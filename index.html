@@ -16,7 +16,7 @@
         {{ tab.name }}
       </li>
     </ul>
-    <component class="tabContents" v-bind:is="selectTab"></component>
+    <component v-bind:is="selectTab"></component>
   </div>
 
   <script>
@@ -74,40 +74,22 @@
     }
 
     .tabMenu {
-      overflow: hidden;
+      display: flex;
       margin-bottom: 10px;
     }
 
-    .tabMenu li,
-    .tabMenu label {
-      float: left;
+    .tabMenu li  {
       padding: 5px 40px;
       border: 1px solid #ccc;
       cursor: pointer;
       transition: .3s;
     }
 
-    .tabMenu li:not(:first-child),
-    .tabMenu label:not(:first-of-type) {
-      border-left: none;
-    }
-
-    .tabMenu li.active,
-    .tabMenu :checked+label {
+    .tabMenu li.active {
       background-color: #000;
       border-color: #000;
       color: #fff;
       cursor: auto;
-    }
-
-    .contents {
-      overflow: hidden;
-      margin-top: 10px;
-    }
-
-    .contents li {
-      width: 320px;
-      padding: 20px;
     }
   </style>
 </body>
