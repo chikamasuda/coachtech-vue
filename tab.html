@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="tab">
+    <ul class="tabMenu">
+      <li v-for="tab in tabs" v-bind:class="{ 'active': tab.id === activeTab }" v-on:click="activeTab = tab.id">
+        {{ tab.name }}
+      </li>
+    </ul>
+    <component class="tabContents" v-bind:is="selectTab"></component>
+  </div>
+
+  <script>
+    Vue.component("tab-1", {
+      template: "<div>コンテンツ１</div>"
+    });
+
+    Vue.component("tab-2", {
+      template: "<div>コンテンツ２</div>"
+    });
+    Vue.component("tab-3", {
+      template: "<div>コンテンツ３</div>"
+    });
+    new Vue({
+        el: "#tab",
+        data: {
+          activeTab: 1,
+          tabs: [
+            {
+              id: 1,
+              name: 'タブ１'
+            },
+            {
+              id: 2,
+              name: 'タブ２'
+            },
+            {
+              id: 3,
+              name: 'タブ３'
+            }
+          ]
+        },
+        computed: {
+          selectTab: function () {
+            return 'tab-' + this.activeTab;
+          }
+        }
+    });
+  </script>
+
+  <style>
+    #tab {
+      width: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .tabMenu {
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .tabMenu li,
+    .tabMenu label {
+      float: left;
+      padding: 5px 40px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .tabMenu li:not(:first-child),
+    .tabMenu label:not(:first-of-type) {
+      border-left: none;
+    }
+
+    .tabMenu li.active,
+    .tabMenu :checked+label {
+      background-color: #000;
+      border-color: #000;
+      color: #fff;
+      cursor: auto;
+    }
+
+    .contents {
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .contents li {
+      width: 320px;
+      padding: 20px;
+    }
+  </style>
+</body>
+
+</html>
