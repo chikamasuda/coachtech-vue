@@ -9,36 +9,6 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 
-<style>
-  #content {
-    z-index: 10;
-    width: 30%;
-    padding: 1em;
-    background: #fff;
-  }
-
-  #overlay {
-
-    z-index: 1;
-
-    /*画面全体を覆う設定*/
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-
-    /*画面の中央に要素を表示させる設定*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-  }
-</style>
-
 <body>
   <div id="app">
     <button v-on:click="openModal">開く</button>
@@ -48,13 +18,13 @@
   <script>
     Vue.component('open-modal', {
       template: `
-    <div id="overlay" v-on:click="clickEvent">
-        <div id="content" v-on:click="stopEvent">
-          <p><slot></slot></p>
-          <button v-on:click="clickEvent">閉じる</button>
-        </div>
-    </div>
-    `,
+      <div id="overlay" v-on:click="clickEvent">
+          <div id="content" v-on:click="stopEvent">
+            <p><slot></slot></p>
+            <button v-on:click="clickEvent">閉じる</button>
+          </div>
+      </div>
+      `,
       methods: {
         clickEvent: function () {
           this.$emit('from-child')
@@ -80,6 +50,33 @@
       }
     })
   </script>
+
+  <style>
+    #content {
+      z-index: 10;
+      width: 30%;
+      padding: 1em;
+      background: #fff;
+    }
+
+    #overlay {
+      z-index: 1;
+      /*画面全体を覆う設定*/
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      /*画面の中央に要素を表示させる設定*/
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
 </body>
 
 </html>
