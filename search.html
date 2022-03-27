@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="keyword">
+    <ul v-for="people in filteredPeoples" :key="people.id">
+      <li>{{ people }}</li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+  <script>
+
+    new Vue({
+      el: '#app',
+      data: {
+        keyword: '',
+        peoples: ['佐藤', '山田', '鈴木', '田中']
+      },
+      computed: {
+        filteredPeoples: function () {
+          let peoples = [];
+          for (i = 0; i < this.peoples.length; i++) {
+            let people = this.peoples[i];
+
+            if (people.indexOf(this.keyword) !== -1) {
+              peoples.push(people);
+            }
+          }
+          return peoples;
+        }
+      }
+    });
+  </script>
+
+  <style>
+    #app {
+      width: 147px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+      margin-top: 10px;
+    }
+  </style>
+  
+</body>
+
+</html>
