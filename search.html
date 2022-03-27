@@ -12,7 +12,7 @@
 <body>
   <div id="app">
     <input type="text" v-model="keyword">
-    <ul v-for="people in filteredPeoples" :key="people.id">
+    <ul v-for="people in filteredPeoples">
       <li>{{ people }}</li>
     </ul>
   </div>
@@ -58,7 +58,7 @@
       margin-top: 10px;
     }
   </style>
-  
+
 </body>
 
 </html>
